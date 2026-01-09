@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import Dashboard from './pages/Dashboard';
+import MainLayout from './components/MainLayout';
 
 export default function App() {
     const [view, setView] = useState('main'); // 'main', 'login', 'signup', 'dashboard'
@@ -18,12 +19,16 @@ export default function App() {
     }, []);
 
     return (
-        <div className="font-sans antialiased bg-black min-h-screen selection:bg-blue-500/30">
+        <div className="font-sans antialiased bg-[#121212] min-h-screen selection:bg-blue-500/30">
             <AnimatePresence mode="wait">
                 {view === 'main' && <LandingPage key="main" setView={setView} />}
                 {view === 'login' && <LoginPage key="login" setView={setView} />}
                 {view === 'signup' && <SignUpPage key="signup" setView={setView} />}
-                {view === 'dashboard' && <Dashboard key="dashboard" setView={setView} />}
+                {view === 'dashboard' && (
+                    <MainLayout setView={setView}>
+                        <Dashboard />
+                    </MainLayout>
+                )}
             </AnimatePresence>
         </div>
     );
