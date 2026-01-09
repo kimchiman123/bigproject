@@ -5,11 +5,23 @@ import GlassCard from '../components/GlassCard';
 
 // 대시보드 페이지
 const Dashboard = ({ setView }) => {
+    const [userName, setUserName] = React.useState('사용자');
+
+    React.useEffect(() => {
+        const storedName = localStorage.getItem('userName');
+        if (storedName) {
+            setUserName(storedName);
+        }
+    }, []);
+
     const handleLogout = () => {
-        // 토큰 삭제
-        localStorage.removeItem('accessToken');
-        // 메인 화면으로 이동
-        setView('main');
+        if (window.confirm("로그아웃 하시겠습니까?")) {
+            // 토큰 및 사용자 정보 삭제
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('userName');
+            // 메인 화면으로 이동
+            setView('main');
+        }
     };
 
     return (
@@ -46,7 +58,7 @@ const Dashboard = ({ setView }) => {
                     <h2 className="text-3xl font-bold">대시보드 개요</h2>
                     <div className="flex items-center gap-4">
                         <div className="text-right">
-                            <p className="text-sm font-bold text-white">홍길동 님</p>
+                            <p className="text-sm font-bold text-white">{userName} 님</p>
                             <p className="text-xs text-gray-500">Premium Plan</p>
                         </div>
                         <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-orange-400 to-rose-500 border-2 border-white/20" />

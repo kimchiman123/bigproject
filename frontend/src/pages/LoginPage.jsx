@@ -20,9 +20,12 @@ const LoginPage = ({ setView }) => {
             const data = response.data;
             console.log('Login success:', data);
 
-            // 토큰 저장 (구현된 백엔드가 accessToken 필드를 반환한다고 가정)
+            // 토큰 및 사용자 이름 저장
             if (data.accessToken) {
                 localStorage.setItem('accessToken', data.accessToken);
+            }
+            if (data.userName) {
+                localStorage.setItem('userName', data.userName);
             }
 
             setView('dashboard');
