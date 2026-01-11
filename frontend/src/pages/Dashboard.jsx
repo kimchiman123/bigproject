@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { LayoutDashboard, Users, Settings, Activity, ChevronRight } from 'lucide-react';
-import GlassCard from '../components/GlassCard';
+import GlassCard from '../components/common/GlassCard';
 
 // 대시보드 페이지
 const Dashboard = () => {
